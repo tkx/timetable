@@ -5,7 +5,7 @@ namespace Moteam\TimeTable;
 /**
  * Represents a timetable - set anything enabled/disabled on certain dates
  */
-class TimeTable {
+class TimeTable implements TimeTableInterface {
     /**
      * Entries list
      * @var array
@@ -64,10 +64,9 @@ class TimeTable {
     }
 
     /**
-     * Valid JSON string
-     * @param string $json
+     * @param string $json Valid JSON string
      */
-    public static function fromJson(string $json): self {
+    public static function fromJsonString(string $json): self {
         $decoded = \json_decode($json, true, 512, JSON_THROW_ON_ERROR);
         if($decoded === null) {
             throw new \JsonException();
@@ -83,8 +82,7 @@ class TimeTable {
     }
 
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function timeToStart(string $name, int $time = null)
     {
@@ -101,8 +99,7 @@ class TimeTable {
         return null;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function timeToOpen(string $name, int $time = null)
     {
@@ -119,8 +116,7 @@ class TimeTable {
         return null;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function timeToEnd(string $name, int $time = null)
     {
@@ -137,8 +133,7 @@ class TimeTable {
         return null;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function timePercent(string $name, $time = null) {
         if($this->isRunning($name, $time)) {
@@ -156,8 +151,7 @@ class TimeTable {
         return null;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function isRunning(string $name, int $time = null) {
         $now = $time ?? \time();
@@ -173,8 +167,7 @@ class TimeTable {
         return false;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function timeStarted(string $name, int $time = null) {
         $now = $time ?? \time();
@@ -190,8 +183,7 @@ class TimeTable {
         return false;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function isOpen(string $name, int $time = null) {
         $now = $time ?? \time();
@@ -207,8 +199,7 @@ class TimeTable {
         return false;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function getVersion(string $name, int $time = null) {
         $now = $time ?? \time();
@@ -226,8 +217,7 @@ class TimeTable {
         return null;
     }
     /**
-     * @param string $name
-     * @param int|null $time
+     * @inheritDoc
      */
     public function getParams(string $name, int $time = null) {
         $now = $time ?? \time();

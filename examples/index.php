@@ -3,7 +3,7 @@ require("../vendor/autoload.php");
 
 use Moteam\TimeTable\TimeTable;
 
-$tt = TimeTable::fromJson(file_get_contents("config.json"));
+$tt = TimeTable::fromJsonString(file_get_contents("config.json"));
 print_r([
     "isRunning" => $tt->isRunning("testEvent"),
     "timePercent" => $tt->timePercent("testEvent"),

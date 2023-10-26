@@ -22,7 +22,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase {
 
     public function testJson() {
         $now = time();
-        $tt = TimeTable::fromJson(json_encode([
+        $tt = TimeTable::fromJsonString(json_encode([
             [
                 "event" => "testEvent",
                 "date" => date("Y-m-d H:i:s", $now),
