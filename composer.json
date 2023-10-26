@@ -23,7 +23,8 @@
     },
     "scripts": {
         "test": "phpunit -v tests",
-        "stan": "phpstan analyze src"
+        "stan": "phpstan analyze src",
+        "stan-l1": "phpstan analyze src --level 1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",
